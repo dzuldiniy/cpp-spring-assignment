@@ -185,24 +185,11 @@ private:
 };
 
 int main() {
+    std::string solution = "eerie";
+    std::vector<std::string> attempts {
+        "dream",
+    };
 
-    std::string solution = "bando";
- 
-    WordleAssistant wa1(5);
-    
-    wa1.load_attempt({"aayaz", attempt_to_key("aayaz", solution)});
-    
-    std::cout << domains_to_str(wa1.get_domains()) << std::endl;
-    std::cout << must_be_present_to_str(wa1.get_must_be_present()) << std::endl;
-
-    std::cout << wa1.solution << std::endl;
-    
-    wa1.load_attempt({"eaoao", attempt_to_key("eaoao", solution)});
-    
-    std::cout << domains_to_str(wa1.get_domains()) << std::endl;
-    std::cout << must_be_present_to_str(wa1.get_must_be_present()) << std::endl;
-
-    std::cout << wa1.solution << std::endl;
     
 
 }
