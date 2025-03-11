@@ -184,12 +184,28 @@ private:
 
 };
 
+void test_attempts(const std::vector<std::string>& attempts, const std::string& solution) {
+    WordleAssistant wa(solution.length());
+    for (const auto& attempt : attempts) {
+        std::string key = attempt_to_key(attempt, solution);
+        std::cout << attempt << " -> " << key << "\n" << std::endl;
+        std::cout << wa.compatible_with_attempts(attempt) << "\n" << std::endl;
+        wa.load_attempt({attempt, key});
+        std::cout << domains_to_str(wa.get_domains()) << std::endl;
+        std::cout << must_be_present_to_str(wa.get_must_be_present()) << std::endl;
+    }
+}
+
 int main() {
-    std::string solution = "eerie";
+    std::string solution = "darls";
+    std::string key;
     std::vector<std::string> attempts {
-        "dream",
+        "snipe",
+        "ghoul",
+        "wrack",
+        "lards",
+        "darls"
     };
 
-    
-
+    test_attempts(attempts, solution);
 }
