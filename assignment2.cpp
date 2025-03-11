@@ -14,10 +14,11 @@ std::map<char, int> word_to_map(const std::string& word) {
 
 std::string attempt_to_key (const std::string& attempt, const std::string& solution) {
     std::map<char, int> solution_map = word_to_map(solution);
+    std::map<char, int> attempt_map = word_to_map(attempt);
     std::stringstream out;
     for(int i = 0; i < solution.length(); i++) {
         char l = attempt[i];
-        if (solution_map[l] == 0) {
+        if (solution_map[l] == 0 || (attempt_map[l] > solution_map[l])) {
             out << "#";
         } else {
             if (solution[i] == l) {
