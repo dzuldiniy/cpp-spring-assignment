@@ -185,25 +185,28 @@ private:
 
 };
 
+void test_attempts(const std::vector<std::string>& attempts, const std::string& solution) {
+    WordleAssistant wa(solution.length());
+    for (const auto& attempt : attempts) {
+        std::string key = attempt_to_key(attempt, solution);
+        std::cout << attempt << " -> " << key << "\n" << std::endl;
+        std::cout << wa.compatible_with_attempts(attempt) << "\n" << std::endl;
+        wa.load_attempt({attempt, key});
+        std::cout << domains_to_str(wa.get_domains()) << std::endl;
+        std::cout << must_be_present_to_str(wa.get_must_be_present()) << std::endl;
+    }
+}
+
 int main() {
+    std::string solution = "darls";
+    std::string key;
+    std::vector<std::string> attempts {
+        "snipe",
+        "ghoul",
+        "wrack",
+        "lards",
+        "darls"
+    };
 
-    std::string solution = "bando";
- 
-    WordleAssistant wa1(5);
-    
-    wa1.load_attempt({"aayaz", attempt_to_key("aayaz", solution)});
-    
-    std::cout << domains_to_str(wa1.get_domains()) << std::endl;
-    std::cout << must_be_present_to_str(wa1.get_must_be_present()) << std::endl;
-
-    std::cout << wa1.solution << std::endl;
-    
-    wa1.load_attempt({"eaoao", attempt_to_key("eaoao", solution)});
-    
-    std::cout << domains_to_str(wa1.get_domains()) << std::endl;
-    std::cout << must_be_present_to_str(wa1.get_must_be_present()) << std::endl;
-
-    std::cout << wa1.solution << std::endl;
-    
-
+    test_attempts(attempts, solution);
 }
